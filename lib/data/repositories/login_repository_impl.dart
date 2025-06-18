@@ -8,7 +8,8 @@ class LoginRepositoryImpl implements LoginRepository {
   LoginRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<LoginResult> login(String username, String password) {
-    return remoteDataSource.login(username, password);
+  Future<LoginResult> login(String username, String password) async {
+    final response = await remoteDataSource.login(username, password);
+    return LoginResult(status: response.status, message: response.message);
   }
 }

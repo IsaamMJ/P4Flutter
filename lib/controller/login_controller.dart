@@ -24,10 +24,14 @@ class LoginController extends GetxController {
     isLoading.value = false;
 
     if (result.status == 'SUCCESS') {
-      Get.snackbar('Success', result.message);
+    print('🔐 Token: ${result.token}');
+  // You could save it in GetStorage or SharedPreferences here
+    Get.snackbar('Success', result.message);
+    Get.offAllNamed('/dashboard');
     } else {
       Get.snackbar('Login Failed', result.message);
     }
+
   }
 
   @override

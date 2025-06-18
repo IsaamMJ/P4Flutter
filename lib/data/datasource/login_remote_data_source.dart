@@ -3,14 +3,15 @@ import 'package:http/http.dart' as http;
 import '../models/login_response_model.dart';
 
 class LoginRemoteDataSource {
-  static const String _baseUrl = 'http://localhost:3000/api';
-  // static const String _baseUrl = 'https://92e8c554-a9c6-48d5-a7b3-d6883a1452cf.mock.pstmn.io';
-
+  static const String _baseUrl = 'http://192.168.0.101:3000/api'; // Replace with your local IP
 
   Future<LoginResponseModel> login(String username, String password) async {
     final url = Uri.parse('$_baseUrl/login');
 
     try {
+      print('📤 Sending POST request to: $url');
+      print('📦 Payload: {username: $username, password: $password}');
+
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -20,14 +21,32 @@ class LoginRemoteDataSource {
         }),
       );
 
+      print('🔁 RESPONSE STATUS: ${response.statusCode}');
+      print('📝 RESPONSE BODY: ${response.body}');
+
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         return LoginResponseModel.fromJson(data);
       } else {
-        return LoginResponseModel(status: 'FAILED', message: 'Invalid credentials');
+        try {
+          final error = jsonDecode(response.body);
+          return LoginResponseModel(
+            status: 'FAILED',
+            message: error['message'] ?? 'Invalid credentials',
+          );
+        } catch (_) {
+          return LoginResponseModel(
+            status: 'FAILED',
+            message: 'Unexpected error format',
+          );
+        }
       }
-    } catch (_) {
-      return LoginResponseModel(status: 'ERROR', message: 'Something went wrong');
+    } catch (e) {
+      print('❌ NETWORK ERROR: $e');
+      return LoginResponseModel(
+        status: 'ERROR',
+        message: 'Could not connect to server. Check your network or API status.',
+      );
     }
   }
 }
