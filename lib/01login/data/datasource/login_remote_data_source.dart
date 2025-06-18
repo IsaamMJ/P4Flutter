@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/login_response_model.dart';
 
 class LoginRemoteDataSource {
-  static const String _baseUrl = 'http://192.168.0.101:3000/api'; // Replace with your local IP
+  static const String _baseUrl = 'http://localhost:3000/api/login'; // Replace with your local IP
 
   Future<LoginResponseModel> login(String username, String password) async {
     final url = Uri.parse('$_baseUrl/01login');
