@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../routes/app_routes.dart';
 
 // DashboardPage - Displays the main dashboard UI
 class DashboardPage extends StatelessWidget {
@@ -27,11 +30,11 @@ class DashboardPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const _HeaderSection(),  // Modularized Header
+                const _HeaderSection(),  // ✅ Updated Header with logout cleanup
                 const SizedBox(height: 30),
-                const _StatsSection(),   // Modularized Stats and Animation
+                const _StatsSection(),
                 const SizedBox(height: 40),
-                Expanded(child: _ActionCardsSection()), // Modularized Action Cards
+                Expanded(child: _ActionCardsSection()),
               ],
             ),
           ),
@@ -41,9 +44,17 @@ class DashboardPage extends StatelessWidget {
   }
 }
 
-// Header Section - Displays Welcome message and Logout button
+// ✅ Updated Header Section with logout token clearing
 class _HeaderSection extends StatelessWidget {
   const _HeaderSection();
+
+  Future<void> _handleLogout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('jwt_token');
+    await prefs.remove('jwt_expiry');
+    await prefs.remove('username');
+    Get.offAllNamed(AppRoutes.login); // ✅ Navigate using named route
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +84,7 @@ class _HeaderSection extends StatelessWidget {
             ],
           ),
           ElevatedButton.icon(
-            onPressed: () => Get.offAllNamed('/login'),
+            onPressed: _handleLogout,
             icon: const Icon(Icons.logout),
             label: const Text("Logout"),
             style: ElevatedButton.styleFrom(
@@ -122,7 +133,6 @@ class _StatsSection extends StatelessWidget {
     );
   }
 
-  // Helper method to build each stat card
   Widget _buildStatCard({
     required IconData icon,
     required String label,
@@ -186,19 +196,18 @@ class _ActionCardsSection extends StatelessWidget {
           title: 'Work Orders',
           description: 'Manage maintenance requests and status.',
           iconPath: 'assets/animations/workorder.json',
-          onTap: () => Get.toNamed('/workorders'),
+          onTap: () => Get.toNamed(AppRoutes.workorder),
         ),
         _buildActionCard(
           title: 'Notifications',
           description: 'View critical system alerts and messages.',
           iconPath: 'assets/animations/notification.json',
-          onTap: () => Get.toNamed('/notifications'),
+          onTap: () => Get.toNamed(AppRoutes.notification),
         ),
       ],
     );
   }
 
-  // Helper method to build each action card
   Widget _buildActionCard({
     required String title,
     required String description,
