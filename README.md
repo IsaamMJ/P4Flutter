@@ -1,129 +1,128 @@
-# Flutter Work Order Dashboard
-
-This is a **Flutter application** that integrates with an **SAP backend** to fetch and display work order data based on an employee's ID. The application allows users to input an **Employee ID**, fetch related work orders, and display them in a clean, user-friendly layout.
+Here’s a clean, professional `README.md` for your **Maintenance Portal Flutter App** — formatted and ready for GitHub:
 
 ---
 
-## Features
+```markdown
+# 🛠️ Maintenance Portal - Flutter App
 
-* **Login Form**: User provides **Employee ID** and fetches work orders.
-* **Dashboard**: Displays work order details including:
-
-    * Order Number
-    * Order Type
-    * Order Description
-    * Created On
-    * Created By
-    * Last Changed By
-    * Company Code
-    * Plant
-    * Object Number
-    * Routing Operation Number
-    * Basic Start Date
-    * Basic Finish Date
-    * Activity Number
-    * Operation Short Text
-    * Work Centre
-    * Employee ID
-    * Notification Number
-* **Loading Indicator**: Displays a loading spinner while fetching data.
-* **Error Handling**: Displays appropriate messages if no work orders are found or if the API request fails.
-* **Refresh Button**: Allows users to reload the work orders.
-* **Smooth UI**: Designed with responsiveness and user experience in mind.
+This is a cross-platform **Flutter application** for managing maintenance operations such as work orders and notifications. It integrates with a **Node.js/Express backend** secured via **JWT authentication**.
 
 ---
 
-## Backend Integration
+## 📱 Features
 
-This app interacts with an **SAP OData** service. The backend API fetches work orders based on the **Employee ID** provided by the user. It uses **Basic Authentication** and returns work order details in **XML format**.
+- 🔐 **Login Authentication**
+  - Uses JWT tokens stored in `SharedPreferences`
+- 📊 **Dashboard**
+  - Displays key metrics and navigation to modules
+- 📥 **Work Orders**
+  - Fetch SAP-style order data with proper date formatting
+- 🔔 **Notifications**
+  - View system alerts and SAP notifications
+- 🌐 **Backend Communication**
+  - Secure `POST` requests with token-based auth
+- 📦 **Clean Architecture**
+  - Follows `Domain → UseCase → Repository → Controller` structure
+- 🎨 **Beautiful UI**
+  - Responsive layout with `GoogleFonts`, `Lottie`, and custom styling
+- 🚀 **State Management**
+  - Powered by [GetX](https://pub.dev/packages/get)
 
-### API Endpoint
+---
+
+## 🧾 Folder Structure
 
 ```
-POST http://your-backend-url/api/workorders
-```
 
-The backend receives an **Employee ID** and returns the following fields for each work order:
+frontend/
+├── 01login/
+├── 02dashboard/
+├── 03workorder/
+├── 04notification/
+├── controller/
+├── data/
+├── domain/
+├── presentation/
+├── routes/
+└── main.dart
 
-* Order Number
-* Order Type
-* Order Description
-* Created On
-* Created By
-* Last Changed By
-* Company Code
-* Plant
-* Object Number
-* Routing Operation Number
-* Basic Start Date
-* Basic Finish Date
-* Activity Number
-* Operation Short Text
-* Work Centre
-* Employee ID
-* Notification Number
+````
 
 ---
 
-## Prerequisites
+## 🔧 Installation
 
-* **Flutter SDK** (version 3.x or above)
-* **Dart SDK** (version 2.x or above)
-* **Internet connection** for fetching work order data via the API
+### ✅ Prerequisites
 
----
+- [Flutter](https://flutter.dev/docs/get-started/install)
+- [Node.js Backend Server](https://nodejs.org/) (Must be running on `http://localhost:3000`)
 
-## Getting Started
+### 🚀 Steps
 
-1. **Clone the Repository**:
-
-   ```bash
-   git clone https://github.com/your-username/flutter-work-order-dashboard.git
-   cd flutter-work-order-dashboard
-   ```
-
-2. **Install Dependencies**:
-   Run the following command to install the required packages:
-
-   ```bash
-   flutter pub get
-   ```
-
-3. **Setup Backend API**:
-
-    * Ensure your backend API is running.
-    * Configure the **SAP OData service** and replace the API URL in your Flutter code.
-    * If the backend isn't available yet, use a mock API or Postman mock server to test the UI.
-
-4. **Run the Application**:
-   To run the app on your desired platform (e.g., Android/iOS/Chrome), use:
-
-   ```bash
-   flutter run
-   ```
+```bash
+git clone https://github.com/yourusername/maintenance-portal.git
+cd maintenance-portal
+flutter pub get
+flutter run
+````
 
 ---
 
-## Folder Structure
+## 🔐 Authentication
 
-```
-lib/
-├── main.dart                # Entry point of the application
-├── presentation/            # Contains UI pages and widgets
-│   ├── pages/               # LoginPage, DashboardPage, etc.
-│   └── widgets/             # Reusable UI components
-├── controller/              # Logic for user interaction, data fetching
-├── routes/                  # Routes for navigation
-└── models/                  # Data models and structures
+* Username and password are sent via `POST /api/login`
+* Token is stored in `SharedPreferences` (`jwt_token`, `username`)
+* Token is sent in the `Authorization` header for:
+
+    * `/api/work-orders`
+    * `/api/notification`
+
+---
+
+## ⚙️ Backend Integration
+
+Ensure the backend is running and supports these routes:
+
+| Endpoint            | Method | Auth Required | Description             |
+| ------------------- | ------ | ------------- | ----------------------- |
+| `/api/login`        | POST   | ❌             | User authentication     |
+| `/api/work-orders`  | POST   | ✅             | Fetch work order data   |
+| `/api/notification` | POST   | ✅             | Fetch notification data |
+
+---
+
+## 📸 Screenshots
+
+| Login                           | Dashboard                               | Work Orders                               | Notifications                                   |
+| ------------------------------- | --------------------------------------- | ----------------------------------------- | ----------------------------------------------- |
+| ![Login](screenshots/login.png) | ![Dashboard](screenshots/dashboard.png) | ![WorkOrders](screenshots/workorders.png) | ![Notifications](screenshots/notifications.png) |
+
+> *(Replace with actual screenshot files or remove this section)*
+
+---
+
+## 🙌 Contributors
+
+* [Your Name](https://github.com/yourusername)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ```
 
 ---
 
-## Contributing
+### ✅ What to Do Next
 
-Feel free to fork this repository and submit pull requests. If you find any bugs or have suggestions for improvements, please open an issue.
+- Place this content in your project’s `README.md` file.
+- Replace placeholders like:
+  - `https://github.com/yourusername/...`
+  - Screenshot paths (`screenshots/*.png`)
+  - Contributor info
+- Optionally, include a `.gif` demo or deployment instructions.
 
----
-
-### 🧑‍💻 **Created with ❤️ by \[Mohamed Isaam M J]**
-
+Let me know if you want me to generate this as a file or tailor it for a backend monorepo!
+```
