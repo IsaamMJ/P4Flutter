@@ -1,8 +1,3 @@
-Here’s a clean, professional `README.md` for your **Maintenance Portal Flutter App** — formatted and ready for GitHub:
-
----
-
-```markdown
 # 🛠️ Maintenance Portal - Flutter App
 
 This is a cross-platform **Flutter application** for managing maintenance operations such as work orders and notifications. It integrates with a **Node.js/Express backend** secured via **JWT authentication**.
@@ -91,38 +86,8 @@ Ensure the backend is running and supports these routes:
 
 ---
 
-## 📸 Screenshots
-
-| Login                           | Dashboard                               | Work Orders                               | Notifications                                   |
-| ------------------------------- | --------------------------------------- | ----------------------------------------- | ----------------------------------------------- |
-| ![Login](screenshots/login.png) | ![Dashboard](screenshots/dashboard.png) | ![WorkOrders](screenshots/workorders.png) | ![Notifications](screenshots/notifications.png) |
-
-> *(Replace with actual screenshot files or remove this section)*
-
----
 
 ## 🙌 Contributors
 
-* [Your Name](https://github.com/yourusername)
+* [MOHAMED ISAAM M J]
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-```
-
----
-
-### ✅ What to Do Next
-
-- Place this content in your project’s `README.md` file.
-- Replace placeholders like:
-  - `https://github.com/yourusername/...`
-  - Screenshot paths (`screenshots/*.png`)
-  - Contributor info
-- Optionally, include a `.gif` demo or deployment instructions.
-
-Let me know if you want me to generate this as a file or tailor it for a backend monorepo!
-```
