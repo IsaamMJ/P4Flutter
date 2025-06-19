@@ -87,7 +87,4 @@ Ensure the backend is running and supports these routes:
 ---
 
 
-## 🙌 Contributors
-
-* [MOHAMED ISAAM M J]
 
