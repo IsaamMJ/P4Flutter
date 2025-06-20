@@ -44,7 +44,7 @@ class LoginController extends GetxController {
       await prefs.setInt('jwt_expiry', expiry);
 
       Get.snackbar('Success', result.message);
-      Get.offAllNamed('/02dashboard');
+      Get.offAllNamed(AppRoutes.dashboard);
     } else {
       Get.snackbar('Login Failed', result.message);
     }
